@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="panel panel-default">   
+    <div class="panel-heading"><button type="button" class="btn btn-primary" ng-click="ctrl.abrirDialog('')">Criar Categoria</button></div>
+    <div class="panel-body">
+      <span style="color:red" ng-show="ctrl.msg.error">{{ctrl.mensagem}}</span>
+      <span class="bg-info" ng-show="ctrl.msg.info">{{ctrl.mensagem}}</span>
+      <table ng-show="!ctrl.msg.error" class="table table-bordered table-hover table-responsive">
+        <thead>
+          <tr>
+            <th width="85%">Categoria {{ctrl.nomeDialog}}</th>
+            <th width="15%"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="categoria in ctrl.categorias">
+            <td  ng-click="ctrl.linhaSelecionada(categoria)">{{categoria[1]}}</td>
+            <td col="2">
+      				<button type="button" class="btn btn-default" ng-click="ctrl.abrirDialog(categoria)" aria-label="Left Align">
+        					<span class="glyphicon glyphicon-edit" ></span>
+      				</button>
+              <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="ctrl.abrirDialogExclusao(categoria)">
+                  <span class="glyphicon glyphicon-trash"></span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div kendo-window="winCategoria" k-title="'Categoria'" k-modal="true" k-on-open="winCategoriavisible = true" k-   visible="false" k-on-close="winCategoriavisible = false"  k-width="300" k-height="150" >
+  <form >
+  <div class="form-control.k-widget col-lg-10">
+    <label for="us-nome">Nome:</label>
+    <input type="text" class="k-textbox"  ng-model="ctrl.nomeCategoria" required>
+
+    <div class="col-sm-offset-2 col-sm-10">
+      <br/><br/>
+      <button type="submit" class="btn btn-primary" ng-click="ctrl.salvarCategoria()">Salvar</button>
+      <button type="submit" class="btn btn-primary" ng-click="winCategoria.close()">Cancelar</button>
+    </div>
+  </div>
+
+  <div kendo-window="winCategoriaConfir" k-title="'Confirmar'" k-modal="true" k-on-open="winCategoriavisible = true" k-visible="false" k-on-close="winCategoriavisible = false"  k-width="300" k-height="100">
+    <div class="form-control.k-widget col-lg-10"><div>Gostaria de excluir?</div>
+    <div class="col-sm-offset-2 col-sm-10" style="text-aling:rigth;">
+      <br/><br/>
+      <button type="submit" class="btn btn-primary" ng-click="ctrl.excluirCategoria()">Sim</button>
+      <button type="submit" class="btn btn-primary" ng-click="winCategoriaConfir.close()">Não</button>
+    </div>
+    </div>
+  </div>
+  </form>
+  </div>
+</div>

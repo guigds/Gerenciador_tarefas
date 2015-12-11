@@ -1,0 +1,29 @@
+
+<!--login modal-->
+<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <h1 class="text-center">TAREF </h1> 
+      </div>
+      <div class="modal-body">
+          <form name="form" class="form col-md-12 center-block">
+            <div ng-show="!ctrl.autenticacao" ><label style="color:red">{{ctrl.mensagem}}</label></div>
+            <div class="form-group">
+              <input type="text" name="usuario" class="form-control input-lg" ng-model="ctrl.usuario.login" placeholder="Usuário" required>
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control input-lg" ng-model="ctrl.usuario.senha" placeholder="Senha" required>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary btn-lg btn-block" ng-click="ctrl.logar()">Entrar</button>
+              <span class="pull-right"><a ui-sref="cd_usuario">Cadastre-se</a></span><span><a ui-sref="rp_senha">Esqueceu sua senha?</a></span>
+            </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+          
+      </div>
+  </div>
+  </div>
+</div>

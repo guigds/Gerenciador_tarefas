@@ -1,0 +1,96 @@
+<div class="row">
+  <div class="panel panel-default">   
+    <div class="panel-heading">
+      <div style="text-align: -webkit-left; width: 70%; float: right;">
+        <h4 > Tarefas da categoria: {{ctrl.categoria.nome}}</h4>  
+      </div>
+      <button type="button" class="btn btn-primary" ng-click="ctrl.abrirDialog('')">Criar Tarefa</button>
+    </div>
+    <div class="panel-body">
+      <span  ng-show="ctrl.mensagem.error" style="color:red">{{ctrl.mensagem.text}}</span>
+      <span class="bg-info" ng-show="ctrl.mensagem.info">{{ctrl.mensagem.text}}</span>
+      <table class="table table-bordered table-hover table-responsive" ng-show="!ctrl.mensagem.error" >
+        <thead>
+          <tr>
+            <th width="20%">Nome</th>
+            <th width="25%">Descrição</th>
+            <th width="20%">Data início</th>
+            <th width="20%">Data final</th>
+            <th width="15%" col="2"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="trf in ctrl.tarefas">
+            <td>{{trf.nome}}</td>
+            <td>{{trf.descricao}}</td>
+            <td>{{trf.dtInicio}}</td>
+            <td>{{trf.dtFinal}}</td>
+            <td col="2">
+				      <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="ctrl.abrirDialog(trf)">
+  					   <span class="glyphicon glyphicon-edit"></span>
+				      </button>
+              <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="ctrl.abrirDialogExclusao(trf)">
+               <span class="glyphicon glyphicon-trash"></span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel-footer">
+      <a href="#" ng-click="ctrl.voltar()"><span class="glyphicon glyphicon-arrow-left"></span></a>
+    </div>
+  </div>
+</div>
+
+<div kendo-window="winTrf" k-title="'Tarefa'" k-modal="true" k-on-open="winCategoriavisible = true" k-   visible="false" k-on-close="winCategoriavisible = false"  k-width="400" k-height="433">
+	 
+    <form>
+      <div class="form-control.k-widget col-lg-15">
+
+  		<div class="form-group">
+  			<label for="trf-nome">Nome:</label>
+  			<input type="text" class="k-textbox" ng-model="ctrl.tarefa.nome" id="trf-nome" autofocus required>
+  		</div>
+      <div class="form-group">
+        <label for="trf-nome">Data Início:</label>
+        <input style="width: 60%;" kendo-date-time-picker  k-format="'dd/MM/yyyy hh:mm tt'" k-disabled ng-model="ctrl.tarefa.dtInicio" id="trf-nome">
+      </div>
+      <div class="form-group">
+        <label for="trf-nome">Data Final:</label>
+        <input style="width: 60%;" kendo-date-time-picker  k-format="'dd/MM/yyyy hh:mm tt'" readonlyx ng-model="ctrl.tarefa.dtFinal" id="trf-nome">
+      </div>
+  		<div class="form-group">
+  			<label for="trf-rd-priori">Prioridade:</label>
+  			<select class="k-textbox" ng-model="ctrl.tarefa.prioridade">
+  				  <option value="1">Alta</option>
+  				  <option value="2">Média</option>
+  				  <option value="3">Baixa</option>
+  			</select>
+  		</div>
+  		<div class="form-group">
+  			<label for="trf-descricao">Descrição:</label>
+  			<textarea name="descricao"  id="trf-descrcao" class="k-textbox" ng-model="ctrl.tarefa.descricao" cols="10" rows="5" ></textarea>
+  		</div>
+      <div class="col-sm-offset-2 col-sm-10">
+        <br/> 
+        <button type="submit" class="btn btn-primary" ng-click="ctrl.salvar()">Salvar</button>
+        <button type="submit" class="btn btn-primary" ng-click="winTrf.close()">Cancelar  </button>
+      </div>		
+
+      </div>
+
+
+    <div kendo-window="winTrfConfir" k-title="'Confirmar'" k-modal="true" k-on-open="winCategoriavisible = true" k-visible="false" k-on-close="winCategoriavisible = false"  k-width="300" k-height="100">
+        <div class="form-control.k-widget col-lg-10"><div>Gostaria de excluir?</div>
+        <div class="col-sm-offset-2 col-sm-10" style="text-aling:rigth;">
+          <br/><br/>
+          <button type="submit" class="btn btn-primary" ng-click="ctrl.excluir()">Sim</button>
+          <button type="submit" class="btn btn-primary" ng-click="winTrf.close()">Não</button>
+        </div>
+        </div>
+      </div>
+
+  	</form>
+  
+</div>

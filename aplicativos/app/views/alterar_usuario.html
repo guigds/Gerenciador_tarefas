@@ -1,0 +1,43 @@
+<div class="row">
+	<h3>Alterar Dados</h3>
+	<span class="bg-info" ng-show="true">Alteração realizada com sucesso</span>
+	<div >
+		<form name="form" class="css-form" >
+		<div class="form-group">
+			<label for="us-nome">Nome:</label>
+			<input type="text" class="form-control" ng-model="ctrl.usuario.nome" required>
+		</div>
+		<div class="form-group">
+			<label for="us-email">E-Mail:</label>
+			<span>{{ctrl.usuario.email}}</span>
+		</div>
+		<span ng-show="ctrl.usuarioExistente" style="color:red">{{ctrl.mensagem}}</span>
+		<div class="form-group">
+			<label for="us-sb-nm">Usuario:</label>
+			<span>{{ctrl.usuario.usuario}}</span>
+		</div>
+		<span  ng-show="false" style="color:red">Senha atual incorreta!</span>
+		<div class="form-group">
+			<label for="us-sn">Senha Atual:</label>
+			<input type="password" class="form-control" ng-model="ctrl.usuario.senha" required>
+		</div>
+
+		<div class="form-group">
+			<label for="us-sn">Nova senha:</label>
+			<input type="password" class="form-control" ng-model="ctrl.usuario.senha" required>
+		</div>
+		<span ng-show="false" style="color:red">Confirmação de senhas não está igual a senha informada.</span>
+		<div class="form-group">
+			<label for="us-cnf-sn">Confirma senha:</label>
+			<input type="password" class="form-control" ng-model="ctrl.usuario.confSenha" required>
+		</div>
+		 <div class="form-group">
+          <button class="btn btn-primary btn-lg btn-block" ng-click="ctrl.cadastrar()">Atualizar</button>
+         </div>
+         <div class="panel-footer">
+      		<a href="#" ng-click="ctrl.voltar()"><span class="glyphicon glyphicon-arrow-left"></span></a>
+    	 </div>
+	</form>	
+	</div>
+	
+</div>
